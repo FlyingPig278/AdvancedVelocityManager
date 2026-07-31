@@ -14,6 +14,7 @@ import work.msdnicrosoft.avm.config.ConfigManager
 import work.msdnicrosoft.avm.util.component.builder.minimessage.miniMessage
 import work.msdnicrosoft.avm.util.server.nickname
 import work.msdnicrosoft.avm.util.server.task
+import kotlin.time.Duration.Companion.seconds
 
 object TabSyncHandler {
     private inline val config get() = ConfigManager.config.tabSync
@@ -45,7 +46,7 @@ object TabSyncHandler {
             return
         }
 
-        task {
+        task(delay = 1L.seconds) {
             val player = event.player
             server.allPlayers.forEach { entryPlayer ->
                 if (entryPlayer != player) {
